@@ -7,6 +7,7 @@ export const initSocket = async () => {
     reconnectionAttempt: "Infinity",
     timeout: 10000,
     transports: ["websocket"],
+    allowEIO3: true,
   };
   return io(process.env.REACT_APP_BACKEND_URL, options);
 };
