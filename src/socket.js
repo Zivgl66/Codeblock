@@ -6,8 +6,15 @@ export const initSocket = async () => {
     forceNew: true,
     reconnectionAttempt: "Infinity",
     timeout: 10000,
-    transports: ["websocket"],
+    transports: [
+      "websocket",
+      "flashsocket",
+      "htmlfile",
+      "xhr-polling",
+      "jsonp-polling",
+    ],
     allowEIO3: true,
+    "polling duration": 10,
   };
   return io(process.env.REACT_APP_BACKEND_URL, options);
 };
