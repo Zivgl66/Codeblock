@@ -11,16 +11,26 @@ const PORT = process.env.PORT || 5000;
 
 // connect to server with websocket and mongoDB
 const server = http.createServer(app);
-const io = new Server(server);
-server.listen(PORT, function () {
-  connectToDb
-    .then(() => console.log("connected to DB"))
-    .catch((err) => console.log(err));
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+  },
 });
-
+app.use(() => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", true);
+});
 app.use(express.static("build"));
 app.use((req, res, next) => {
-  res.sendFile(path, join(__dirname, "build", "index.html"));
+  res.sendFile(path, join(__dirname, "build", "/index.html"));
 });
 
 // create a user model and schema
@@ -85,4 +95,10 @@ io.on("connection", (socket) => {
     delete userSocketMap[socket.id];
     socket.leave();
   });
+});
+
+server.listen(PORT, function () {
+  connectToDb
+    .then(() => console.log("connected to DB"))
+    .catch((err) => console.log(err));
 });
