@@ -2,6 +2,7 @@ import { io } from "socket.io-client";
 
 export const initSocket = async () => {
   const options = {
+    protocol: "wss",
     "force new connection": true,
     forceNew: true,
     reconnectionAttempt: "Infinity",
