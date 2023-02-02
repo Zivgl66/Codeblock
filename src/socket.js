@@ -2,7 +2,6 @@ import { io } from "socket.io-client";
 
 export const initSocket = async () => {
   const options = {
-    protocol: "wss",
     "force new connection": true,
     'try multiple transports': true,
     forceNew: true,
@@ -10,7 +9,7 @@ export const initSocket = async () => {
     tryTransportsOnConnectTimeout: true,
     reconnectionAttempt: "Infinity",
     timeout: 10000,
-    transports: ['websocket', 'flashsocket', 'htmlfile', 'xhr-multipart', 'xhr-polling', 'jsonp-polling', 'polling'],
+    transports: ['flashsocket', 'xhr-polling', 'htmlfile', 'xhr-multipart', 'websocket', 'jsonp-polling', 'polling'],
     allowEIO3: true,
     "polling duration": 10,
   };
