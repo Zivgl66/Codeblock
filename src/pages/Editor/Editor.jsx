@@ -70,11 +70,7 @@ const Editor = () => {
     };
     init();
 
-    return () => {
-      socketRef.current.disconnect();
-      socketRef.current.off(ACTIONS.JOINED);
-      socketRef.current.off(ACTIONS.DISCONNECTED);
-    };
+  
   }, []);
 
   if (!location.state) {
