@@ -5,6 +5,7 @@ export const initSocket = async () => {
     protocol: "wss",
     "force new connection": true,
     forceNew: true,
+    tryTransportsOnConnectTimeout: true,
     reconnectionAttempt: "Infinity",
     timeout: 10000,
     transports: [
