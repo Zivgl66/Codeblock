@@ -9,8 +9,8 @@ export const initSocket = async () => {
     reconnectionAttempt: "Infinity",
     timeout: 10000,
     transports: [
-      "polling",
       "websocket",
+      "polling",
       "flashsocket",
       "htmlfile",
       "xhr-polling",
