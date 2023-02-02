@@ -6,6 +6,7 @@ export const initSocket = async () => {
     "force new connection": true,
     'try multiple transports': true,
     forceNew: true,
+    reconnect: true,
     tryTransportsOnConnectTimeout: true,
     reconnectionAttempt: "Infinity",
     timeout: 10000,
