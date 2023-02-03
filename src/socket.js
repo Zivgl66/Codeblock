@@ -8,7 +8,7 @@ export const initSocket = async () => {
     reconnect: true,
     tryTransportsOnConnectTimeout: true,
     reconnectionAttempt: "Infinity",
-    timeout: 5000,
+    timeout: 1000,
     transports: [ 'websocket','flashsocket', 'xhr-polling', 'htmlfile', 'xhr-multipart', 'jsonp-polling', 'polling'],
     allowEIO3: true,
   };
