@@ -10,6 +10,7 @@ import CodeEditor from "../../components/CodeEditor";
 import { initSocket } from "../../socket";
 import ACTIONS from "../../Actions";
 import codeblocks from "../../utils/codeblocks";
+import { logDOM } from "@testing-library/react";
 
 const Editor = () => {
   const { codeblockId } = useParams();
@@ -24,16 +25,10 @@ const Editor = () => {
   const stopFromChanging = () => {
     document.querySelector(".editor-code").addEventListener("keydown", (e) => {
       e.preventDefault();
-      let text = document.querySelector(".editor-code").children;
-      text[0].readOnly = true;
     });
-   document.querySelector(".editor-code").addEventListener("touchstart", (e) => {
-      console.log('touch');
-      e.stopPropagation();
-      e.preventDefault();
-      let text = document.querySelector(".editor-code").children;
-      text[0].readOnly = true;
-    });
+
+    let textarea = document.querySelector(".editor-code");
+    textarea.addEventListener("touchstart").blur();
   };
 
   useEffect(() => {
