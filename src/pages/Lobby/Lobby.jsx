@@ -36,9 +36,7 @@ const Lobby = () => {
           })}
         </div>
       </div>
-      <footer className="footer">
-        <h3 className="footer-text">@Zivgl66</h3>
-      </footer>
+      
     </div>
   );
 };

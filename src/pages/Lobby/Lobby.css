@@ -75,15 +75,6 @@
   color: var(--white-text-color);
 }
 
-.footer {
-  position: fixed;
-  bottom: 0;
-  right: 50%;
-}
-.footer-text {
-  color: var(--dark-text-color);
-  transform: translateX(50%);
-}
 /* media queries ---------------------------------------------- */
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1225px) {
