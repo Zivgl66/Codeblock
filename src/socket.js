@@ -8,8 +8,8 @@ export const initSocket = async () => {
     reconnect: true,
     tryTransportsOnConnectTimeout: true,
     reconnectionAttempt: "Infinity",
-    timeout: 20000,
-    transports: ['flashsocket', 'xhr-polling', 'htmlfile', 'xhr-multipart', 'websocket', 'jsonp-polling', 'polling'],
+    timeout: 5000,
+    transports: [ 'websocket','flashsocket', 'xhr-polling', 'htmlfile', 'xhr-multipart', 'jsonp-polling', 'polling'],
     allowEIO3: true,
   };
   return io(process.env.REACT_APP_BACKEND_URL, options);
