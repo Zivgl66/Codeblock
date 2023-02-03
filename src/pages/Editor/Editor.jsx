@@ -26,6 +26,8 @@ const Editor = () => {
       .querySelector(".editor-code")
       .addEventListener("keydown" || "touchstart", (e) => {
         e.preventDefault();
+        let text = document.querySelector(".editor-code").children;
+        text[0].readOnly = true;
       });
   };
 
