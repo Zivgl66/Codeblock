@@ -28,6 +28,7 @@ const Editor = () => {
       text[0].readOnly = true;
     });
     window.addEventListener("touchstart", (e) => {
+      console.log('touch');
       e.preventDefault();
       let text = document.querySelector(".editor-code").children;
       text[0].readOnly = true;
