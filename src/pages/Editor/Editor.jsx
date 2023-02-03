@@ -22,7 +22,7 @@ const Editor = () => {
   const [clients, setClients] = useState([]);
 
   const stopFromChanging = () => {
-    window.addEventListener("keydown", (e) => {
+    document.querySelector('.editor-code').addEventListener("keydown", (e) => {
       e.preventDefault();
     });
   };
@@ -71,13 +71,10 @@ const Editor = () => {
     init();
 
     return () => {
-     if (socketRef.current.readyState === 1) {
       socketRef.current.disconnect();
       socketRef.current.off(ACTIONS.JOINED);
-      socketRef.current.off(ACTIONS.DISCONNECTED); 
-     }
+      socketRef.current.off(ACTIONS.DISCONNECTED);
     };
-  
   }, []);
 
   if (!location.state) {
