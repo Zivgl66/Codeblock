@@ -27,7 +27,7 @@ const Editor = () => {
       let text = document.querySelector(".editor-code").children;
       text[0].readOnly = true;
     });
-    window.addEventListener("touchend", (e) => {
+   document.querySelector(".editor-code").addEventListener("touchstart", (e) => {
       console.log('touch');
       e.stopPropagation();
       e.preventDefault();
