@@ -22,9 +22,11 @@ const Editor = () => {
   const [clients, setClients] = useState([]);
 
   const stopFromChanging = () => {
-    document.querySelector('.editor-code').addEventListener("keydown", (e) => {
-      e.preventDefault();
-    });
+    document
+      .querySelector(".editor-code")
+      .addEventListener("keydown" || "touchstart", (e) => {
+        e.preventDefault();
+      });
   };
 
   useEffect(() => {
