@@ -25,6 +25,12 @@ const Editor = () => {
     document.querySelector(".editor-code").addEventListener("keydown", (e) => {
       e.preventDefault();
     });
+    document
+      .querySelector(".editor-code")
+      .children[0].addEventListener("input", (e) => {
+        e.preventDefault();
+        e.target.value = "";
+      });
   };
 
   useEffect(() => {
