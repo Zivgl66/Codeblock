@@ -6,7 +6,7 @@ import {
   useNavigate,
   Navigate,
 } from "react-router-dom";
-import CodeEditor from "../../components/CodeEditor";
+import CodeEditor from "../../components/CodeEditor/CodeEditor";
 import { initSocket } from "../../socket";
 import ACTIONS from "../../Actions";
 import codeblocks from "../../utils/codeblocks";
@@ -15,23 +15,11 @@ const Editor = () => {
   const { codeblockId } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(true);
   const socketRef = useRef(null);
   const codeRef = useRef(null);
   const codeblock = codeblocks[codeblockId];
   const [clients, setClients] = useState([]);
-
-  const stopFromChanging = () => {
-    document.querySelector(".editor-code").addEventListener("keydown", (e) => {
-      e.preventDefault();
-    });
-    document
-      .querySelector(".editor-code")
-      .children[0].addEventListener("input", (e) => {
-        e.preventDefault();
-        e.target.value = "";
-      });
-  };
 
   useEffect(() => {
     const init = async () => {
@@ -56,9 +44,6 @@ const Editor = () => {
           if (username !== location.state?.username) {
             console.log(`${username} joined the room`);
           }
-          if (location.state?.username === clients[0].username) {
-            stopFromChanging();
-          }
           setClients(clients);
           socketRef.current.emit(ACTIONS.SYNC_CODE, {
             socketId,
@@ -76,6 +61,8 @@ const Editor = () => {
     };
     init();
 
+    setLoading(false);
+
     return () => {
       socketRef.current.disconnect();
       socketRef.current.off(ACTIONS.JOINED);
@@ -87,7 +74,17 @@ const Editor = () => {
     return <Navigate to="/" />;
   }
 
-  return (
+  return loading ? (
+    <div className="preloader">
+      <div className="preloader-wrapper">
+        <div className="loading">
+          <div className="circle"></div>
+          <div className="circle"></div>
+          <div className="circle"></div>
+        </div>
+      </div>
+    </div>
+  ) : (
     <div className="editor-wrapper">
       <div className="editor-title">
         <h1>
