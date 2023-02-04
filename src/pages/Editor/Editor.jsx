@@ -41,9 +41,6 @@ const Editor = () => {
       socketRef.current.on(
         ACTIONS.JOINED,
         ({ clients, username, socketId }) => {
-          if (username !== location.state?.username) {
-            console.log(`${username} joined the room`);
-          }
           setClients(clients);
           socketRef.current.emit(ACTIONS.SYNC_CODE, {
             socketId,
@@ -53,7 +50,6 @@ const Editor = () => {
       );
 
       socketRef.current.on(ACTIONS.DISCONNECTED, ({ socketId, username }) => {
-        console.log(`${username} left`);
         setClients((prev) => {
           return prev.filter((client) => client.socketId !== socketId);
         });
